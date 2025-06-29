@@ -29,6 +29,7 @@ def main():
 
     AsteroidField.containers = (updatable)
 
+    print(PLAYER_RADIUS)
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     asteroidfield = AsteroidField()
@@ -39,6 +40,12 @@ def main():
                 return
         screen.fill("black")
         updatable.update(dt)
+        for asteroid in asteroids:
+            if asteroid.collide(player):
+                print("Game over!")
+                return
+            else:
+                pass
         for object in drawable:
             object.draw(screen)
         pygame.display.flip()
